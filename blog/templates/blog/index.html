@@ -1,0 +1,21 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+<h1>My blog posts</h1>
+
+<h3>Total post{{posts.count|pluralize }}: {{posts.count}}</h3>
+{% if posts %}
+    {% for post in posts %}
+        <div class= 'post-card'>
+            <a href="{% url 'blog:detail' post.id %}">
+                <h2>{{post.title}}</h2>
+                <p>{{post.created_at|date:'M d Y'}}</p>
+                <p>{{post.content|truncatechars:100}}</p>
+            </a>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+
